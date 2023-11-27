@@ -272,9 +272,7 @@ from common.djangoapps.student.models import CourseEnrollment
         </div>
       </div>
       <div class="side-container" role="complementary" aria-label="messages">
- 
 
-       
         %if display_sidebar_account_activation_message:
           <div class="sidebar-notification">
             <%include file="${static.get_template_path('registration/account_activation_sidebar_notice.html')}" />
