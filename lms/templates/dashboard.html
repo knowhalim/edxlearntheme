@@ -274,13 +274,7 @@ from common.djangoapps.student.models import CourseEnrollment
       <div class="side-container" role="complementary" aria-label="messages">
  
 
-        <div class="mychatbox">
-          <div class="msg_display"></div>
-          <div class="form_chat">
-            <textarea id="chatbox"></textarea>
-            <div class="chatbtn">Send</div>
-          </div>
-        </div>
+       
         %if display_sidebar_account_activation_message:
           <div class="sidebar-notification">
             <%include file="${static.get_template_path('registration/account_activation_sidebar_notice.html')}" />
@@ -422,81 +416,5 @@ function getCookie(name) {
     if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
-jQuery(document).ready(function(){
-    jQuery('.chatbtn').click(function(){
-        var msg = jQuery('#chatbox').val();
-        jQuery('#chatbox').val("");
-        jQuery('.msg_display').append('<div class="user_say">'+msg+'</div>');
-        console.log(msg);
-        jQuery.ajax({
-            url: 'http://stglms.aisingapore.org:18000/hello/',
-            type: 'POST',
-            data: JSON.stringify({
-                'msg': msg
-            }),
-            dataType: 'json',
-            success: function(response) {
-                console.log(response);
-                jQuery('.msg_display').append('<div class="ai_say">'+response.answer+'</div>');
-                //jQuery('.msg_display').text(response.answer);
-            },
-            error: function(xhr, status, error) {
-              console.log("AJAX error:", error);
-          }
-        });
-    });
-});
-</script>
-<style>
-  .mychatbox {
-    padding: 15px;
-    background-color: #e5e5e5;
-    border-radius: 10px;
-    /*position: fixed;*/
-    width: 300px;
-    max-width: 300px;
-}
-  .msg_display {
-      background-color: #fff;
-      padding: 10px;
-      max-height: 300px;
-      height: 300px;
-      overflow-y: auto;
-  }
-  textarea#chatbox {
-    width: 100%;
-    margin-top: 20px;
-}
-.user_say {
-    background-color: #e9fff0;
-    padding: 10px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    text-align: right;
-    
-}
-.ai_say {
-    padding: 10px;
-    padding-right: 30px;
-    background-color: #f8ffdb;
-    margin-bottom: 12px;
-    border-radius: 10px;
-}
-.chatbtn {
-    width: 100%;
-    padding: 13px;
-    background-color: #0075b4;
-    display: grid;
-    max-width: 90%;
-    color: #fff;
-    text-align: center;
-    margin-top: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-    position: fixed;
-    width: 300px;
-    max-width: 300px;
-</style>
 <%include file="dashboard/_dashboard_entitlement_unenrollment_modal.html"/>
 <span class="myhtmlphp">File is at dashboard.html</span>
